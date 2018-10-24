@@ -20,7 +20,7 @@ $(document).ready(function() {
       database.ref("/players").set({
         playerB: playerB
       });
-      $("#modal").removeClass("modal open");
+      $("#modal").addClass("hide");
     }
   });
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
     modCont.addClass("modal-content").append(modHead, modText, modFoot);
 
     $("#modal")
-      .addClass("modal open")
+      .addClass("modal open hide")
       .append(modCont);
   }
 
@@ -66,6 +66,9 @@ $(document).ready(function() {
   document.addEventListener("DOMContentLoaded", function() {
     var elems = document.querySelectorAll(".modal");
     var instances = M.Modal.init(elems, options);
+    database.ref("/players").set({
+      playerA: playerA
+    });
   });
 
   $("#minus").on("click", matchNum);

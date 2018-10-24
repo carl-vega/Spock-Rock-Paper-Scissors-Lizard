@@ -1,0 +1,128 @@
+<!-- By DMacks (talk) - Edited (repositioned elements) version of File:Pierre ciseaux feuille lézard spock.svg, which is by Nojhan and licensed GFDL/cc-by-sa-3.0,2.5,2.0,1.0, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=13241299 -->
+
+<!DOCtype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>RoPaScSpLi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="container" id="p-one">
+        <div id="modal"></div>
+        <div id="left">
+            <div id="menu">
+                <div id="top-menu">
+                    <a class="btn-floating btn-large waves-effect waves-light red" id="minus"><i class="material-icons">exposure_neg_1</i></a>
+                    <form id="counter">
+                        <div class="input-field">
+                            <textarea id="num-games" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Number of Matches</label>
+                        </div>
+                    </form>
+                    <a class="btn-floating btn-large waves-effect waves-light red" id="plus"><i class="material-icons">exposure_plus_1</i></a>
+                </div>
+                <div id="information">
+                    <ul class="collapsible popout">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Overview</div>
+                            <div class="collapsible-body" id="overview"><span><img src="assets/images/Game-Overview.svg"></span></div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="table-container card" id="win-loss-tie">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Wins</th>
+                                <th>Loses</th>
+                                <th>Ties</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Rock</th>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>Paper</th>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>Scissors</th>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>Spock</th>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>Lizard</th>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="card container" id="chat-area">
+            <div class="wrapper card-body">
+                <div id="chat-history">
+                    <ul>
+                        <li>
+                            rabbe rabble rabble
+                        </li>
+                    </ul>
+                </div>
+                <form id="input">
+                    <input id="message">
+                    <button id="submit" type="submit">Send<i class="material-icons">send</i></button>
+                </form>
+            </div>
+        </div>
+
+        <div id="button-area">
+            <div id="buttons">
+                <a class="btn-floating btn-large waves-effect waves-light red" id="minus">Ro</a>
+                <a class="btn-floating btn-large waves-effect waves-light red" id="minus">Sc</a>
+                <a class="btn-floating btn-large waves-effect waves-light red" id="minus">Pa</a>
+                <a class="btn-floating btn-large waves-effect waves-light red" id="minus">Sp</a>
+                <a class="btn-floating btn-large waves-effect waves-light red" id="minus">Li</a>
+            </div>
+        </div>
+    </div>
+    <footer id="p-two">
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+    <script src="assets/javascript/script.js"></script>
+
+</body>
+
+</html>
