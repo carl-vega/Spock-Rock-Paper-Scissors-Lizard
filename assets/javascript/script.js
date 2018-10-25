@@ -8,49 +8,78 @@ $(document).ready(function() {
     storageBucket: "rockpaperscissorsspockli-5a0b5.appspot.com",
     messagingSenderId: "857001278813"
   };
+
   firebase.initializeApp(config);
 
   var database = firebase.database();
 
-  var playerA;
-  var playerB;
-
-  database.ref("/players").on("value", function(snapshot) {
-    if (snapshot.child("playerA").exists()) {
-      database.ref("/players").set({
-        playerB: playerB
-      });
-      $("#modal").addClass("hide");
+  function gameChanged(snapshot) {
+    var players = snapshot.val();
+    if (!players) {
+      return;
     }
+    var usernames = Object.keys(players);
+    if (usernames.length >= 2) {
+      determineWinner(players[usernames[0]], players[usernames[1]]);
+      database.ref("players").set({});
+    }
+  }
+
+  $("#name").on("submit", function(event) {
+    event.preventDefault();
+    var username = $("#username")
+      .val()
+      .trim();
+    localStorage.setItem("name", username);
+    $("#name").addClass("hide");
+    $("#buttons").removeClass("hide");
+    $("#player").text(username + ", throw a gesture");
+    database.ref("players/" + username).set(null);
   });
 
-  function start() {
-    var modCont = $("<div>");
-    var modHead = $("<h4>");
-    var modText = $("<p>");
-    var modFoot = $("<a>");
+  function determineWinner(playerA, playerB) {
+    if (playerA.choice === playerB.choice) {
+      return draw();
+    }
+    var gestures = {
+      Rock: ["Scissors", "Lizard"],
+      Paper: ["Rock", "Spock"],
+      Scissors: ["Lizard", "Paper"],
+      Spock: ["Scissors", "Rock"],
+      Lizard: ["Spock", "Paper"]
+    };
+    var playerAWon = gestures[playerA.choice].indexOf(playerB.choice) > -1;
+    if (playerAWon) {
+      declareWinner(playerA, playerB);
+    } else {
+      declareWinner(playerB, playerA);
+    }
+  }
 
-    modFoot.addClass("modal-footer").text("waiting...");
-    modText.text(
-      "While you wait for the other player, the rules of this game are as follows. Rock beats scissors and lizard. Paper beats rock and Spock. Scissors beats paper and lizard. Spock beats rock and scissors. Lizard beats paper and Spock."
+  function draw() {
+    $("#winner").text("It is a draw");
+    $("#info").empty();
+    $("button").removeClass("indigo");
+  }
+
+  function declareWinner(winner, loser) {
+    $("#winner").text(
+      winner.choice + " beats " + loser.choice + ". " + winner.name + " wins"
     );
-    modHead.text("You are Player 1");
-    modCont.addClass("modal-content").append(modHead, modText, modFoot);
-
-    $("#modal")
-      .addClass("modal open hide")
-      .append(modCont);
+    $("#info").empty();
+    $("button").removeClass("indigo");
   }
 
-  function matchNum() {
-    var count = 0;
-    count++;
-    $("#num-games").text(count);
+  function option(event) {
+    var choice = $(this).text();
+    $(this).addClass("indigo");
+    $("#info").text("you chose " + choice);
+    $("#winner").empty();
+    database.ref("players/" + localStorage.getItem("name")).set({
+      name: localStorage.getItem("name"),
+      choice: choice
+    });
   }
-
-  // function option() {
-
-  // }
 
   // function playerA() {
 
@@ -66,13 +95,11 @@ $(document).ready(function() {
   document.addEventListener("DOMContentLoaded", function() {
     var elems = document.querySelectorAll(".modal");
     var instances = M.Modal.init(elems, options);
-    database.ref("/players").set({
-      playerA: playerA
-    });
   });
 
-  $("#minus").on("click", matchNum);
-  $("#plus").on("click", matchNum);
-
-  start();
+  $("#buttons button").on("click", option);
+  database.ref("players").on("value", gameChanged);
+  $("#username")
+    .val(localStorage.getItem("name"))
+    .focus();
 });

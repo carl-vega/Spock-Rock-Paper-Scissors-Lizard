@@ -13,6 +13,44 @@
 </head>
 
 <body>
+    <div class="container">
+
+        <div class="row">
+            <!-- take in username and then hide like a ninja-->
+            <div class="modal-open" id="name">
+                <form class="col s12">
+                    <div class="row modal-content">
+                        <div class="input-field col s6">
+                            <input id="username" type="text" required>
+                            <label for="username">Add Your Name</label>
+                            <button class="btn waves-effect waves-light modal-close" type="submit" name="action">Play
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <h1 id="player"></h1>
+            <h5 id="info"></h5>
+
+            <!-- when ninja hides smoke bomb entrance -->
+            <div class="col s12 hide" id="buttons">
+                <div class="row center-align">
+                    <button class="btn waves-effect waves-light">Rock</button>
+                    <button class="btn waves-effect waves-light">Paper</button>
+                    <button class="btn waves-effect waves-light">Scissors</button>
+                    <button class="btn waves-effect waves-light">Spock</button>
+                    <button class="btn waves-effect waves-light">Lizard</button>
+                </div>
+            </div>
+
+            <h3 id="winner"></h3>
+
+        </div>
+    </div>
+
+    </div>
 
 
 
