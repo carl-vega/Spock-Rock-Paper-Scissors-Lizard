@@ -71,7 +71,7 @@ $(document).ready(function() {
   }
 
   function option(event) {
-    var choice = $(this).text();
+    var choice = $(this).attr("data-choice");
     $(this).addClass("indigo");
     $("#info").text("you chose " + choice);
     $("#winner").empty();
@@ -80,19 +80,41 @@ $(document).ready(function() {
       choice: choice
     });
   }
+  function inlineChat(event) {
+    event.preventDefault();
+    var message = $("#yackity").val();
+    var name = localStorage.getItem("name");
+    database.ref("messages").push(name + " - " + message);
+  }
 
-  var elem = document.querySelector(".collapsible.popout");
-  var instance = M.Collapsible.init(elem, {
-    accordion: false
-  });
+  function onlineChat(snapshot) {
+    setTimeout(function() {
+      document.getElementById("#" + snapshot.key + "").scrollIntoView();
+    });
+    var chatHistory = snapshot.val();
+    var chatDiv = $("<li>");
+    chatDiv.attr("id", snapshot.key);
+    chatDiv.text(chatHistory);
+    $("#schmackity").append(chatDiv);
+  }
 
   document.addEventListener("DOMContentLoaded", function() {
     var elems = document.querySelectorAll(".modal");
     var instances = M.Modal.init(elems, options);
   });
 
-  $("#buttons button").on("click", option);
+  $(document).ready(function() {
+    $(".sidenav").sidenav();
+  });
+
+  $("#slide-out").on("submit", inlineChat);
+
+  $("map area").on("click", option);
+
   database.ref("players").on("value", gameChanged);
+
+  database.ref("messages").on("child_added", onlineChat);
+
   $("#username")
     .val(localStorage.getItem("name"))
     .focus();

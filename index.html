@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <main class="container">
 
         <div class="row">
             <!-- take in username and then hide like a ninja-->
@@ -33,22 +33,49 @@
             <h5 id="info"></h5>
 
             <!-- when ninja hides smoke bomb entrance -->
-            <div class="col s12 hide" id="buttons">
-                <div class="row center-align">
-                    <button class="btn waves-effect waves-light">Rock</button>
-                    <button class="btn waves-effect waves-light">Paper</button>
-                    <button class="btn waves-effect waves-light">Scissors</button>
-                    <button class="btn waves-effect waves-light">Spock</button>
-                    <button class="btn waves-effect waves-light">Lizard</button>
+
+            <div class="col card s12 hide" id="buttons">
+                <div class="row card-content center-align">
+                    <img src="assets/images/Game-Overview.svg" usemap="#image-map">
+
+                    <map name="image-map">
+                        <area data-choice="Rock" alt="Rock" href="#" title="Rock" coords="423,479,86" shape="circle">
+                        <area data-choice="Paper" alt="Paper" href="#" title="Paper" coords="489,250,87" shape="circle">
+                        <area data-choice="Scissors" alt="Scissors" href="#" title="Scissors" coords="296,116,86" shape="circle">
+                        <area data-choice="Spock" alt="Spock" href="#" title="Spock" coords="111,254,85" shape="circle">
+                        <area data-choice="Lizard" alt="Lizard" href="#" title="Lizard" coords="185,484,85" shape="circle">
+                    </map>
                 </div>
             </div>
 
             <h3 id="winner"></h3>
 
-        </div>
-    </div>
 
-    </div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="sidenav card" id="slide-out">
+            <div class="chat-wrapper">
+                <ul class="card-content" id="schmackity">
+                </ul>
+            </div>
+            <form class="input-field col s12">
+                <input id="yackity" type="text" autocomplete="off" required>
+                <label for="yackity">Message</label>
+                <button class="btn-flat waves-effect waves-light" type="submit">
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">chat_bubble_outline</i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 
