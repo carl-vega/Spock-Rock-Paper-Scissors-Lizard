@@ -9,10 +9,28 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: "Ubuntu", sans-serif;
+  background-image: url("../images/Dark-galaxy.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 main {
   flex: 1 0 auto;
+}
+
+#buttons {
+  margin-top: 50px;
+}
+
+#chat-button {
+  position: absolute;
+  top: -28px;
+  left: 24px;
+}
+
+#alerts h4 {
+  margin: 0;
 }
 
 #slide-out {
@@ -26,4 +44,10 @@ main {
   display: flex;
   flex-grow: 1;
   overflow-y: auto;
+}
+
+@media screen and (max-width: 770px) {
+  #slide-out {
+    width: 75%;
+  }
 }
