@@ -44,6 +44,7 @@ $(document).ready(function() {
     $("#alerts").removeClass("hide");
     $("#info").text(username + ", throw a gesture");
     database.ref("players/" + username).set(null);
+    $(window).trigger("resize");
   });
 
   function determineWinner(playerA, playerB) {
